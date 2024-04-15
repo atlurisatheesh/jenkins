@@ -1,5 +1,6 @@
 Pipeline{
-agent{
+    agent any
+    
     stages{
         stage(" stage one "){
             steps{
@@ -17,6 +18,6 @@ agent{
             }
         }
     }
-}
+
 
 }
