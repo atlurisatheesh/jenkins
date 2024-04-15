@@ -4,6 +4,10 @@ pipeline {
         ENV_URL = " pipeline.google.com "
         SSH_CRED = credentials('SSH_CRED')
     }
+
+    triggers { 
+        cron('*/1 * * * *') 
+        }
     
     parameters {
         string(name: 'PERSON', defaultValue: 'satheesh', description: 'Who should I say hello to?')
