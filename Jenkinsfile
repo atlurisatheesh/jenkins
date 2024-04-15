@@ -1,4 +1,4 @@
-pipeline{
+Pipeline{
 agent{
     stages{
         stage(" stage one "){
