@@ -1,19 +1,19 @@
 pipeline{
 agent{
     stages{
-        stage("stage one"){
+        stage(" stage one "){
             steps{
-                sh "echo stage one profile "
+                sh " echo stage one profile "
             }
         }
-        stage("stage two"){
+        stage(" stage two "){
             steps{
-                sh "echo stage two profile "
+                sh " echo stage two profile "
             }
         }
-        stage("stage three"){
+        stage(" stage three "){
             steps{
-                sh "echo stage three profile "
+                sh " echo stage three profile "
             }
         }
     }
