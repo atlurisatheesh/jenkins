@@ -6,7 +6,7 @@ pipeline {
     }
 
     triggers { 
-        cron('*/1 * * * *') 
+        pollSCM('*/1 * * * *') 
         }
     
     parameters {
@@ -23,6 +23,11 @@ pipeline {
                 ENV_URL = " stage.google.com "
                 
             }
+
+        triggers { 
+            cron('*/1 * * * *') 
+            }
+
             steps{
                 sh ''' echo stage one profile 
                        echo environemt url ${ENV_URL}
