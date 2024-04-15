@@ -24,10 +24,7 @@ pipeline {
                 
             }
 
-        triggers { 
-            cron('*/1 * * * *') 
-            }
-
+        
             steps{
                 sh ''' echo stage one profile 
                        echo environemt url ${ENV_URL}
