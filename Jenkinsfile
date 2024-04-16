@@ -48,7 +48,7 @@ pipeline {
 
         stage(' stage three ') {
             environmet {
-                BATCH = 'satheesh'
+                BATCH = "satheesh"
             }
             steps {
                 sh " echo stage three profile "
