@@ -59,11 +59,11 @@ pipeline {
             }
         }
     }
-post {
-    always { 
+    post {
+        always {
             clearWs()
         }
-}
+    }
 
 
 }
