@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'ws'
+    }
     environment {
         ENV_URL = " pipeline.google.com "
         SSH_CRED = credentials('SSH_CRED')
@@ -32,6 +34,7 @@ pipeline {
                 sh ''' echo stage one profile 
                        echo environemt url ${ENV_URL}
                        env
+                       hsotname
                        sleep 20
                     '''
             }
@@ -56,11 +59,11 @@ pipeline {
             }
         }
     }
-// post {
-//     always { 
-//             clearWs
-//         }
-// }
+post {
+    always { 
+            clearWs()
+        }
+}
 
 
 }
