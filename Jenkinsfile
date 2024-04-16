@@ -47,7 +47,7 @@ pipeline {
         }
 
         stage(' stage three ') {
-            environmet {
+            environment {
                 BATCH = "satheesh"
             }
             steps {
