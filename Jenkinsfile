@@ -32,21 +32,27 @@ pipeline {
                 sh ''' echo stage one profile 
                        echo environemt url ${ENV_URL}
                        env
+                       sleep 20
                     '''
             }
         }
 
-        stage(" stage two ") {
+        stage('Paralle Demo') {
             steps {
                 sh ''' echo stage two profile 
                         mvn -v
+                        sleep 30
                     '''
             }
         }
 
         stage(' stage three ') {
+            environmet {
+                batch = 'satheesh'
+            }
             steps {
                 sh " echo stage three profile "
+                sh "sleep 35"
             }
         }
     }
