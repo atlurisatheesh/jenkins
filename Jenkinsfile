@@ -9,7 +9,7 @@ pipeline {
         maven 'apache-maven-3.9.6'
     }
     triggers { 
-        pollSCM('*/1 * * * *') 
+        pollSCM('*/59 * * * *') 
         }
     
     parameters {
@@ -50,7 +50,7 @@ pipeline {
     }
 post {
     always { 
-            clearWS
+            clearWs
         }
 }
 
