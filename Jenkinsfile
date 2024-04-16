@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        maven ' maven-3.9.6 '
+        maven ' maven-3.8.6 '
     }
     triggers { 
         pollSCM('*/59 * * * *') 
@@ -48,11 +48,11 @@ pipeline {
             }
         }
     }
-post {
-    always { 
-            clearWs
-        }
-}
+// post {
+//     always { 
+//             clearWs
+//         }
+// }
 
 
 }
