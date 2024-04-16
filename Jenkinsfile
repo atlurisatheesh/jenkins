@@ -38,7 +38,9 @@ pipeline {
 
         stage(" stage two ") {
             steps {
-                sh " echo stage two profile "
+                sh ''' echo stage two profile 
+                        mvn -v
+                    '''
             }
         }
 
