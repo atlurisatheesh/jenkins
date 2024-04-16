@@ -5,6 +5,9 @@ pipeline {
         SSH_CRED = credentials('SSH_CRED')
     }
 
+    tools {
+        maven 'apache-maven-3.9.6'
+    }
     triggers { 
         pollSCM('*/1 * * * *') 
         }
@@ -38,13 +41,18 @@ pipeline {
                 sh " echo stage two profile "
             }
         }
-        
+
         stage(' stage three ') {
             steps {
                 sh " echo stage three profile "
             }
         }
     }
+post {
+    always { 
+            clearWS
+        }
+}
 
 
 }
