@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        maven 'apache-maven-3.9.6'
+        maven ' apache-maven-3.9.6 '
     }
     triggers { 
         pollSCM('*/59 * * * *') 
