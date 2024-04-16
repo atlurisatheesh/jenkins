@@ -2,68 +2,67 @@ pipeline {
     agent {
         label 'ws'
     }
-    environment {
-        ENV_URL = " pipeline.google.com "
+    environment {                                  // Pipeline Variables : All the stages of the pipeline can use it.
+        ENV_URL  = "pipeline.google.com"
         SSH_CRED = credentials('SSH_CRED')
     }
 
-    tools {
-        maven 'maven-3.8.6' 
-    }
     triggers { 
-        pollSCM('*/59 * * * *') 
-        }
-    
+        pollSCM('*/59 * * * 1-5') 
+    }
+
     parameters {
-        string(name: 'PERSON', defaultValue: 'satheesh', description: 'Who should I say hello to?')
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?') 
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 
-    stages {
-        stage(" stage one ") {
-            environment {
-                ENV_URL = " stage.google.com "
-                
-            }
+    tools {
+        maven 'maven-3.8.6' 
+    }
 
-            
-            steps{
-                sh ''' echo stage one profile 
-                       echo environemt url ${ENV_URL}
-                       env
-                       hsotname
-                       sleep 20
-                    '''
-            }
-        }
-
+    stages {     
         stage('Paralle Demo') {
-            steps {
-                sh ''' echo stage two profile 
-                        mvn -v
-                        sleep 30
-                    '''
-            }
-        }
-
-        stage(' stage three ') {
-            environment {
-                BATCH = "satheesh"
-            }
-            steps {
-                sh " echo stage three profile "
-                sh "sleep 35"
+            parallel {   
+                stage('Stage One') {
+                    environment {                          // Stage level variable 
+                        ENV_URL = "stage.google.com"
+                    }
+                    steps {
+                        sh '''
+                            echo Hello World
+                            echo Welcome To Jenkins
+                            echo Environment URL is ${ENV_URL}
+                            mvn -v 
+                            hostname    
+                            sleep 10           
+                        '''
+                    }
+                }
+                stage('Stage Two') {
+                    environment {
+                        BATCH = "b55"
+                    }
+                    steps {
+                        sh "echo Stage Two Demo"
+                        sh "echo Trainig  Batch is ${BATCH}"
+                        sh "sleep 30"
+                    }
+                }
+                stage('Stage Three') {
+                    steps {
+                        sh "echo Stage Three Demo"
+                        sh "sleep 50"
+                    }
+                }
             }
         }
     }
-    // post {
-    //     always {
-    //         clearWs()
-    //     }
-    // }
-
-
+    post {
+        always {
+            clearWs()
+        }
+    }
 }
